@@ -1,4 +1,3 @@
-
 UnitHosting API仕様書 ver 1.3.2
 ===============================
 
@@ -256,6 +255,48 @@ UHAPIサービスを利用するためのリクエストの送信先は以下の
 *   string result : 実行結果(成功なら success)
 
 
+### vm.plugVif
+
+仮想NICを導入します。
+
+#### 引数
+
+*   string network_uuid: Network UUID
+*   integer device: NICのデバイスナンバー(1,2,3のいづれかを指定する)
+
+
+#### 戻り値
+
+*   string result : 実行結果(成功なら success)
+
+
+### vm.getVifs
+
+サーバにに導入されている仮想NICの情報を得ます。
+
+### 引数
+
+なし
+
+### 戻り値
+
+* VIF
+  *    string  MAC: MACアドレス
+  *    integer device: デバイス番号
+  *    string  uuid: 仮想NICのUUID
+  *    string  network: ネットワークのUUID
+
+### vm.unplugVif
+
+仮想NICを取り外します。
+
+### 引数
+
+*  string vif_uuid: 仮想NICのUUID
+
+#### 戻り値
+
+*   string result : 実行結果(成功なら success)
 
 サーバグループAPI
 ---------------
@@ -316,6 +357,7 @@ UHAPIサービスを利用するためのリクエストの送信先は以下の
 *   string cycle :　課金サイクル(hourly,monthly)
 *   float point : 課金ポイント(cycle毎)
 
+
 サンプルコード
 -------------
 
@@ -343,3 +385,5 @@ Ruby,PHP,Python,Perlの各言語によるスケールアップのサンプルプ
 *   1.1 <code class="snippet">vm.getIpInfo</code>の追加
 *   1.3 <code class="snippet">vm.getCrushRecover</code> <code class="snippet">vm.setCrushRecover</code>の追加、その他修正
 *   1.3.1 エンドポイントのURLを https://cloud. ...に修正
+*   1.4 vm.plugVif/vm.unplugVif/vm.getVifs 追加
+
